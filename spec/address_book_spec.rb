@@ -97,4 +97,34 @@ require_relative '../models/address_book'
       end
     end
 
+    describe "#import_from_csv2" do
+      it "imports the correct number of entries" do
+        book.import_from_csv("entries_2.csv")
+        book_size = book.entries.size
+
+        expect(book_size).to eq(3)
+      end
+
+      it "imports the 1st entry" do
+        book.import_from_csv("entries_2.csv")
+        entry_one = book.entries[0]
+
+        check_entry(entry_one, "Claire Forlani", "555-555-3660", "claire@forlani.net")
+      end
+
+      it "imports the 2nd entry" do
+        book.import_from_csv("entries_2.csv")
+        entry_two = book.entries[1]
+
+        check_entry(entry_two, "Hope Sandoval", "555-555-5415", "shehangsbrightly@hopesandoval.com")
+      end
+
+      it "imports the 3rd entry" do
+        book.import_from_csv("entries_2.csv")
+        entry_three = book.entries[2]
+
+        check_entry(entry_three, "Jack Kerouac", "555-555-4854", "ontheroad@dharmabums.com")
+      end
+    end
+
   end
