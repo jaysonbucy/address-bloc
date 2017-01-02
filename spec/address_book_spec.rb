@@ -225,4 +225,12 @@ require_relative '../models/address_book'
       end
     end
 
+    describe "#demolish_all" do
+      it "should delete all entries" do
+        book.import_from_csv("entries_2.csv")
+        book.demolish_all
+        expect(book.entries.size).to eq(0)
+      end
+    end
+
   end
